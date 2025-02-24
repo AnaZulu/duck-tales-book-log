@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck Tales Book Log</title>
+    <link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+
+    <img src="/public/duck-logo.png" alt="Duck Tales Book Log Logo" class="websiteLogo">
+
+    <h1>Duck Tales Book Log</h1>
+    
+    <form id="book-form">
+        <input type="text" id="title" placeholder="Book Title" required>
+        <input type="text" id="author" placeholder="Author" required>
+        <input type="text" id="genre" placeholder="Genre" required>
+        <input type="number" id="rating" placeholder="Rating (1-5)" min="1" max="5" required>
+        <button type="submit">Add New Book</button>
+    </form>
+    
+    <ul id="book-list"></ul>
+    
+    <script type="module" src="/src/app.js"></script>
+</body>
+</html>
