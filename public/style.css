@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  h1 {
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  .websiteLogo {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 100px;
+    height: auto;
+  }
+  
+  #book-form {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 90%;
+    width: 400px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  #book-form input, #book-form button {
+    width: 91%;
+    padding: 10px;
+    margin: 7px 0;
+    border: 2px solid #ccc;
+    border-radius: 7px;
+    text-align: center;
+  }
+  
+  #book-form button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  #book-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  #book-list {
+    list-style: none;
+    padding: 0;
+    max-width: 90%;
+    width: 400px;
+    margin: 0 auto;
+  }
+  
+  #book-list li {
+    background: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    flex-wrap: wrap;
+    word-break: break-word;
+  }
+  
+  #book-list button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  #book-list button:hover {
+    background-color: #c82333;
+  }
+
+  @media (max-width: 600px) {
+    #book-form, #book-list {
+        width: 100%;
+    }
+  
+    #book-list li {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+  
+    #book-list button {
+        margin-top: 5px;
+    }
+  }
+  
