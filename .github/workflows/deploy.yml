@@ -26,10 +26,15 @@ jobs:
       - name: clean npm cache
         run: npm cache clean --force
 
-      - name: Install dependencies
-        run: npm install --omit=dev
+      - name: Install Dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install --no-optional
 
-      - name: Build project with Parcel
+      - name: Fix Parcel Watcher Issue (if needed)
+        run: npm install @parcel/watcher --force
+
+      - name: Build Project
         run: npm run build
 
       - name: Upload artifact
