@@ -12,7 +12,7 @@ function signIn() {
         
         localStorage.setItem("email", JSON.stringify(user.email));
         
-        window.location = "tasks.html";
+        window.location = "index.html";
     }).catch((error) => {
 
         const errorCode = error.code;
