@@ -1,10 +1,10 @@
 {
   "name": "webtrendsfirebasetesting",
   "version": "1.0.0",
-  "main": "index.js",
+  "source": "public/index.html",
   "scripts": {
-    "dev:start": "parcel public/index.html --open",
-    "build": "parcel build public/index.html --dist-dir dist",
+    "dev:start": "parcel --open",
+    "build": "parcel build",
     "deploy": "gh-pages -d dist"
   },
   "keywords": [],
@@ -13,7 +13,8 @@
   "type": "commonjs",
   "description": "",
   "dependencies": {
-    "firebase": "^11.3.1",
+    "@google/generative-ai": "^0.22.0",
+    "firebase": "^11.4.0",
     "firebase-admin": "^13.1.0",
     "gh-pages": "^6.3.0",
     "parcel": "^2.13.3"

@@ -3,25 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0078D7">
     <title>Duck Tales Book Log</title>
-    <link rel="stylesheet" href="/public/style.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- Google Tag Manager (Fixed) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-QLL1Z9B3N1"></script> -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-QLL1Z9B3N1');
+    </script>
 </head>
 <body>
-
-    <img src="/public/duck-logo.png" alt="Duck Tales Book Log Logo" class="websiteLogo">
-
-    <h1>Duck Tales Book Log</h1>
+    <header>
+        <div class="header-container">
+            <img src="./duck-logo.png" alt="Duck Tales Logo" class="websiteLogo">
+            <h1>Duck Tales Book Log</h1>
+        </div>
+    </header>
     
-    <form id="book-form">
-        <input type="text" id="title" placeholder="Book Title" required>
-        <input type="text" id="author" placeholder="Author" required>
-        <input type="text" id="genre" placeholder="Genre" required>
-        <input type="number" id="rating" placeholder="Rating (1-5)" min="1" max="5" required>
-        <button type="submit">Add New Book</button>
-    </form>
-    
+    <!-- Container for Book Form -->
+    <div class="cover-container">
+        <img src="./coverImage.jpg" alt="Cover Background" class="coverImage">
+        <form id="book-form">
+            <input type="text" id="title" placeholder="Book Title" required>
+            <input type="text" id="author" placeholder="Author" required>
+            <input type="text" id="genre" placeholder="Genre" required>
+            <input type="number" id="rating" placeholder="Rating (1-5)" min="1" max="5" required>
+            <button type="submit">Add New Book</button>
+        </form>
+    </div>
+
     <ul id="book-list"></ul>
     
-    <script type="module" src="/src/app.js"></script>
+    <button class="signIn-btn" id="signIn">Sign In</button>
+    
+    <!-- Container for chatbot-->
+    <div id="chatbot-container" class="hidden">
+        <div id="chat-header">
+            <span id="chat-toggle-minus">-</span>
+            <span id="chat-toggle-plus">+</span>
+        </div>
+        <div id="chat-history"></div>
+        <input type="text" id="chat-input" placeholder="Type your message...">
+        <button id="send-btn">Send</button>
+    </div>
+
+    <!-- JavaScript Files included Fixed Paths -->
+    <script type="module" src="../src/chatbot.js"></script>
+    <script type="module" src="../src/firebaseConfig.js"></script>
+    <script type="module" src="../src/tasks.js"></script>
+    <script type="module" src="../src/signIn.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const chatContainer = document.getElementById("chatbot-container");
+            const toggleMinus = document.getElementById("chat-toggle-minus");
+            const togglePlus = document.getElementById("chat-toggle-plus");
+            const chatInput = document.getElementById("chat-input");
+            const sendBtn = document.getElementById("send-btn");
+            const chatHistory = document.getElementById("chat-history");
+    
+            // // Maximize the Chatbox
+            // togglePlus.addEventListener("click", function () {
+            //     chatContainer.classList.remove("hidden");
+            // });
+    
+            // Send Message to chatbot 
+            sendBtn.addEventListener("click", function () {
+                sendMessage();
+            });
+    
+            chatInput.addEventListener("keypress", function (e) {
+                if (e.key === "Enter") {
+                    sendMessage();
+                }
+            });
+    
+            function sendMessage() {
+                const userMessage = chatInput.value.trim();
+                if (!userMessage) return;
+    
+                appendMessage("You", userMessage);
+                chatInput.value = "";
+    
+                setTimeout(() => {
+                    const botReply = generateBotResponse(userMessage);
+                    appendMessage("Bot", botReply);
+                }, 500);
+            }
+    
+            function appendMessage(sender, message) {
+                const messageElement = document.createElement("div");
+                messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+                chatHistory.appendChild(messageElement);
+                chatHistory.scrollTop = chatHistory.scrollHeight;
+            }
+    
+            function generateBotResponse(input) {
+                const lowerInput = input.toLowerCase();
+                if (lowerInput.includes("hello")) return "Hi there! How can I help you?";
+                return "I'm just a simple bot. Try asking something else!";
+            }
+        });
+    </script>
+    
 </body>
 </html>
